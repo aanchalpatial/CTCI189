@@ -1,0 +1,24 @@
+//1)
+//find if all the characters in the given string are unique or not.
+//do it in 0(n) time & 0(n) space
+bool isUnique(string str){
+    unordered_set<int> s;
+    for(int i=0;i<str.size();++i){
+        int val = str.at(i);
+        if( s.find(val) == s.end() ) s.insert(val);
+        else return false;
+    }
+    return true;
+}
+
+//2)
+//we can improve upon space by a factor of 8 if we use bit vector and assume that our string consists of only lowercase alphabets.
+//IMPLEMENTATION: left (Refer Book)
+
+
+
+//3)
+//NAIVE SOLUTION
+//if no extra space is allowed to be used, then the best time that we can achieve is 0(nlogn) i.e by first sorting the string and then
+//looking if any consecutive characters are same or not.
+
