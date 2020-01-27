@@ -1,0 +1,46 @@
+//Given a string, check if it is a permutation of a palindrome or not.
+//Assumption: Case Insensitive, White spaces insignificant
+//A Naive solution would to first form all permutation of strings and then check if any one of them is a palindrome which 
+//would be factorial in time and inefficient
+
+//Do it in 0(n) time
+//For string to be a permutation of palindrome it can have no more than 1 character that is odd.
+//2 Methods:Hash Tables & Bit vectors.
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//METHOD 1)
+bool checkPalindromePermutation(string str){
+    unordered_map<char,int> m;
+    for(int i=0;i<str.size();++i){
+        if(str[i] == ' ') continue;             //Ignoring white spaces
+        if(str[i]>=65 && str[i]<=92)            //Making case insenitive
+	    {
+		str[i]=str[i]+32;
+	    }
+        if( m.find(str[i])==m.end() ) m[str[i]]++;
+        else m[str[i]]--;
+        
+        if(m[str[i]] == 0) m.erase(str[i]);
+    }
+    
+    
+    if(m.size()>1) return false;
+    else return true;
+}
+
+int main()
+{
+    string str = "Tact coa";
+    if (checkPalindromePermutation(str)) cout<<"Yes";
+    else cout<<"No";
+    
+    
+    
+    return 0;
+}
+
+//METHOD 2):  **Left**
+
