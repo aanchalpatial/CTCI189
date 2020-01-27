@@ -1,0 +1,40 @@
+//Replace some charcters with some other characters in a given string in 0(n)
+//Problem: Replace space with %200 in the given string
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+   char str[] = "my name is cristiano dos santos aveira ronaldo";
+   int length = sizeof(str)/sizeof(str[0]);
+   
+   //count number of spaces
+   int spaceCount = 0;
+   for(int i=0;i<length;++i){
+       if(str[i] == ' ') ++spaceCount;
+   }
+   
+   //find the end index of the string after required replacements 
+   int newSize = length + spaceCount * 3;
+   
+   for(int i= length-1;i>=0;--i){
+       if(str[i] == ' '){
+           str[--newSize] = '0';
+           str[--newSize] = '0';
+           str[--newSize] = '2';
+           str[--newSize] = '%';
+           
+       }else {
+           str[--newSize] = str[i];
+       }
+   }
+   
+   cout<<str<<endl;
+   
+   
+   
+   return 0;
+   
+
+}
