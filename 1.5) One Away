@@ -1,0 +1,42 @@
+//3 types of edit: insert, remove or replace a character.
+//Given 2 strings, check if they are one(or zero) edit away.
+//In string related question always clarify: 
+//->that whether whitespaces are significant or not 
+//->is it case sensitive or not 
+//->ASCII or Unicode
+//In this problem: white spaces significant, case sensitive & ascii
+//We will use hash to do this in 0(n) time
+
+bool checkOneAway(string str1, string str2){
+    unordered_set<int> s;
+    for(int i=0;i<str1.length();++i){
+        int asciiValue = int(str1[i]);
+        s.insert(asciiValue);
+    }
+    int cnt = 0;
+    for(int i=0;i<str2.length();++i){
+        int asciiValue = int(str2[i]);
+        if(s.find(asciiValue)!=s.end()){
+            s.erase(asciiValue);
+        }else {
+            ++cnt;
+        }
+    }
+    int away = cnt+s.size();
+    if(str1.length() == str2.length()){
+        if(away < 3) return true;
+    }else {
+         if(away<2) return true;
+    }
+    return false;
+}
+
+int main()
+{
+    string str1 = "abcdef";
+    string str2 = "fedcbz";
+    string result = checkOneAway(str1, str2)?"Yes":"No";
+    cout<<result<<endl;
+    return 0;
+}
+
